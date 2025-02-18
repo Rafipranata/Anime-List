@@ -102,7 +102,7 @@
                     </div>
                     <div class="anime__details__episodes">
                         <div class="section-title">
-                            <h5>List Name</h5>
+                            <h5>List Episode</h5>
                         </div>
                         @foreach ($responseAnime['data']['episodes'] as $item)
                             <a href="{{ $item['url'] }}" target="_blank">{{ $item['episode'] }} </a>

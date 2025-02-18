@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/elegant-icons.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('css/plyr.css') }}" type="text/css">
+    
     <link rel="stylesheet" href="{{ asset('css/nice-select.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}" type="text/css">
+    
     <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
 
@@ -39,7 +39,7 @@
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li class="active"><a href="index.html">Homepage</a></li>
+                                <li class="active"><a href="/">Homepage</a></li>
                                 <li><a href="categories.html">Categories <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
                                         <li><a href="categories.html">Categories</a></li>
@@ -117,14 +117,6 @@
 
                         </div>
                     </div>
-                    <div class="product__pagination">
-                        <a href="#" class="current-page">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#">5</a>
-                        <a href="#"><i class="fa fa-angle-double-right"></i></a>
-                    </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-8">
                     <div class="product__sidebar">
@@ -179,58 +171,6 @@
                                 <h5>Random</h5>
                             </div>
 
-                            <div class="product__sidebar__comment__item">
-                                <div class="product__sidebar__comment__item__pic">
-                                    <img src="img/sidebar/comment-1.jpg" alt="">
-                                </div>
-                                <div class="product__sidebar__comment__item__text">
-                                    <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
-                                    </ul>
-                                    <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
-                                    <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
-                                </div>
-                            </div>
-                            <div class="product__sidebar__comment__item">
-                                <div class="product__sidebar__comment__item__pic">
-                                    <img src="img/sidebar/comment-2.jpg" alt="">
-                                </div>
-                                <div class="product__sidebar__comment__item__text">
-                                    <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
-                                    </ul>
-                                    <h5><a href="#">Shirogane Tamashii hen Kouhan sen</a></h5>
-                                    <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
-                                </div>
-                            </div>
-                            <div class="product__sidebar__comment__item">
-                                <div class="product__sidebar__comment__item__pic">
-                                    <img src="img/sidebar/comment-3.jpg" alt="">
-                                </div>
-                                <div class="product__sidebar__comment__item__text">
-                                    <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
-                                    </ul>
-                                    <h5><a href="#">Kizumonogatari III: Reiket su-hen</a></h5>
-                                    <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
-                                </div>
-                            </div>
-                            <div class="product__sidebar__comment__item">
-                                <div class="product__sidebar__comment__item__pic">
-                                    <img src="img/sidebar/comment-4.jpg" alt="">
-                                </div>
-                                <div class="product__sidebar__comment__item__text">
-                                    <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
-                                    </ul>
-                                    <h5><a href="#">Monogatari Series: Second Season</a></h5>
-                                    <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -292,11 +232,10 @@
     <!-- Js Plugins -->
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/player.js') }}"></script>
+    
     <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
     <script src="{{ asset('js/mixitup.min.js') }}"></script>
     <script src="{{ asset('js/jquery.slicknav.js') }}"></script>
-    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
 
 </body>

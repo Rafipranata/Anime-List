@@ -11,10 +11,20 @@
     <link rel="stylesheet" href="{{ asset('css/elegant-icons.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/plyr.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/nice-select.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
+    <style>
+        .responsive-image {
+            background-size: cover;
+            background-position: center;
+            height: 0;
+            padding-bottom: 20%;
+            padding-top: 125%;
+            position: relative;
+        }
 
+        
+    </style>
 
     <title>Document</title>
 </head>
@@ -116,13 +126,9 @@
 
                                             </li>
                                             <li><span>Date aired:</span>
-                                                @if ($response['data']['type'] == 'Movie')
-                                                    {{ date('Y-m-d', strtotime($response['data']['aired']['from'])) }}
+                                                {{ date('Y-m-d', strtotime($response['data']['aired']['from'])) }}
                                             </li>
-                                        @else
-                                            {{ date('Y-m-d', strtotime($response['data']['aired']['from'])) }} to
-                                            {{ date('Y-m-d', strtotime($response['data']['aired']['to'])) }}</li>
-                                            @endif
+
 
                                             <li><span>Status:</span> {{ $response['data']['status'] }}</li>
                                             <li><span>Genre:</span>
@@ -155,76 +161,46 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 col-md-8">
-                    {{-- <div class="anime__details__review">
-                        <div class="section-title">
-                            <h5>Reviews</h5>
-                        </div>
-                        <div class="anime__review__item">
-                            <div class="anime__review__item__pic">
-                                <img src="img/anime/review-1.jpg" alt="">
-                            </div>
-                            <div class="anime__review__item__text">
-                                <h6>Chris Curry - <span>1 Hour ago</span></h6>
-                                <p>whachikan Just noticed that someone categorized this as belonging to the genre
-                                    "demons" LOL</p>
-                            </div>
-                        </div>
-                        <div class="anime__review__item">
-                            <div class="anime__review__item__pic">
-                                <img src="img/anime/review-2.jpg" alt="">
-                            </div>
-                            <div class="anime__review__item__text">
-                                <h6>Lewis Mann - <span>5 Hour ago</span></h6>
-                                <p>Finally it came out ages ago</p>
-                            </div>
-                        </div>
-                        <div class="anime__review__item">
-                            <div class="anime__review__item__pic">
-                                <img src="img/anime/review-3.jpg" alt="">
-                            </div>
-                            <div class="anime__review__item__text">
-                                <h6>Louis Tyler - <span>20 Hour ago</span></h6>
-                                <p>Where is the episode 15 ? Slow update! Tch</p>
-                            </div>
-                        </div>
-                        <div class="anime__review__item">
-                            <div class="anime__review__item__pic">
-                                <img src="img/anime/review-4.jpg" alt="">
-                            </div>
-                            <div class="anime__review__item__text">
-                                <h6>Chris Curry - <span>1 Hour ago</span></h6>
-                                <p>whachikan Just noticed that someone categorized this as belonging to the genre
-                                    "demons" LOL</p>
-                            </div>
-                        </div>
-                        <div class="anime__review__item">
-                            <div class="anime__review__item__pic">
-                                <img src="img/anime/review-5.jpg" alt="">
-                            </div>
-                            <div class="anime__review__item__text">
-                                <h6>Lewis Mann - <span>5 Hour ago</span></h6>
-                                <p>Finally it came out ages ago</p>
-                            </div>
-                        </div>
-                        <div class="anime__review__item">
-                            <div class="anime__review__item__pic">
-                                <img src="img/anime/review-6.jpg" alt="">
-                            </div>
-                            <div class="anime__review__item__text">
-                                <h6>Louis Tyler - <span>20 Hour ago</span></h6>
-                                <p>Where is the episode 15 ? Slow update! Tch</p>
-                            </div>
-                        </div>
-                    </div> --}}
+
                     <div class="anime__details__form">
                         <div class="section-title">
-                            <h5>Your Comment</h5>
+                            <h5>Anime Characters</h5>
                         </div>
-                        <form action="#">
-                            <textarea placeholder="Your Comment"></textarea>
-                            <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
-                        </form>
+                        <!-- Anime_details.blade.php -->
+                        <div class="row">
+                            @foreach ($responseChar['data'] as $character)
+                                @if ($character['character']['name'] != 'Narrator')
+                                    <div class="col-lg-4 col-md-6 col-sm-6">
+                                        <div class="product__item">
+                                            <div class="product__item__pic set-bg responsive-image"
+                                                data-setbg="{{ $character['character']['images']['jpg']['image_url'] }}"
+                                                style="background-image: url('{{ $character['character']['images']['jpg']['image_url'] }}');">
+                                            </div>
+
+                                            <div class="product__item__text">
+                                                <ul>
+                                                    <li><span>Role:</span> {{ $character['role'] }}</li>
+                                                    <li><span>Favorites:</span>
+                                                            {{ number_format($character['favorites']) }}
+                                                
+
+                                                </ul>
+                                                <h5>
+                                                    <a href="{{ $character['character']['url'] }}">
+                                                        {{ $character['character']['name'] }}
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+
+
                     </div>
+
+
                 </div>
                 <div class="col-lg-4 col-md-4">
                     <div class="anime__details__sidebar">
@@ -303,7 +279,6 @@
     <script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
     <script src="{{ asset('js/mixitup.min.js') }}"></script>
     <script src="{{ asset('js/jquery.slicknav.js') }}"></script>
-    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
 
 </body>

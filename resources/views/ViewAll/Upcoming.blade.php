@@ -2,14 +2,14 @@
 
 @section('title', 'All-Trending')
 
-@section('sub-judul', 'Trending Now')
+@section('sub-judul', 'Upcoming Anime')
 
 @section('content')
     @foreach ($response->data as $item)
         <div class="col-lg-4 col-md-6 col-sm-6">
             <div class="product__item">
                 <div class="product__item__pic set-bg" data-setbg="{{ $item->images->webp->image_url }}">
-                    <div class="ep">{{ $item->score }} / 10 </div>
+                    <div class="ep">?</div>
                     <div class="view"><i class="fa fa-eye"></i>
                         {{ number_format($item->members) }} </div>
                 </div>
@@ -26,3 +26,6 @@
         </div>
     @endforeach
 @endsection
+
+
+
