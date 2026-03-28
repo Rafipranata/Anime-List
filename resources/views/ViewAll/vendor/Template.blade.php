@@ -13,6 +13,7 @@
     
     <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/anime-custom.css') }}" type="text/css">
 
 
     <title>@yield('title')</title>
@@ -131,36 +132,28 @@
                                 <li data-filter=".years">Years</li>
                             </ul>
                             <div class="filter__gallery">
-                                <div class="product__sidebar__view__item set-bg mix day years"
-                                    data-setbg="img/sidebar/tv-1.jpg">
-                                    <div class="ep">18 / ?</div>
-                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    <h5><a href="#">Boruto: Naruto next generations</a></h5>
-                                </div>
-                                <div class="product__sidebar__view__item set-bg mix month week"
-                                    data-setbg="img/sidebar/tv-2.jpg">
-                                    <div class="ep">18 / ?</div>
-                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
-                                </div>
-                                <div class="product__sidebar__view__item set-bg mix week years"
-                                    data-setbg="img/sidebar/tv-3.jpg">
-                                    <div class="ep">18 / ?</div>
-                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    <h5><a href="#">Sword art online alicization war of underworld</a></h5>
-                                </div>
-                                <div class="product__sidebar__view__item set-bg mix years month"
-                                    data-setbg="img/sidebar/tv-4.jpg">
-                                    <div class="ep">18 / ?</div>
-                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
-                                </div>
-                                <div class="product__sidebar__view__item set-bg mix day"
-                                    data-setbg="img/sidebar/tv-5.jpg">
-                                    <div class="ep">18 / ?</div>
-                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    <h5><a href="#">Fate stay night unlimited blade works</a></h5>
-                                </div>
+                                @if(isset($topViews) && is_array($topViews))
+                                    @foreach($topViews as $index => $item)
+                                        @php
+                                            // Assign dummy filter classes for MixItUp based on index since Jikan doesn't provide timeframe popularity directly
+                                            $filterClass = 'day';
+                                            if($index % 4 == 1) $filterClass = 'week';
+                                            elseif($index % 4 == 2) $filterClass = 'month';
+                                            elseif($index % 4 == 3) $filterClass = 'years';
+                                            
+                                            // Ensure some overlap for realistically looking filters
+                                            if($index % 3 == 0) $filterClass .= ' month';
+                                        @endphp
+                                        <div class="product__sidebar__view__item set-bg mix {{ $filterClass }}"
+                                            data-setbg="{{ $item['images']['webp']['image_url'] ?? $item['images']['jpg']['image_url'] ?? '' }}">
+                                            <div class="ep">{{ $item['score'] ?? 'N/A' }} / 10</div>
+                                            <div class="view"><i class="fa fa-eye"></i> {{ number_format($item['members'] ?? 0) }}</div>
+                                            <h5><a href="/detail-anime/{{ $item['mal_id'] }}">{{ $item['title'] }}</a></h5>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <p style="color: #b7b7b7;">No data available.</p>
+                                @endif
                             </div>
                         </div>
 
@@ -237,6 +230,9 @@
     <script src="{{ asset('js/mixitup.min.js') }}"></script>
     <script src="{{ asset('js/jquery.slicknav.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+
+    {{-- Scripts dari child views (contoh: live search) --}}
+    @stack('scripts')
 
 </body>
 

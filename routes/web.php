@@ -28,7 +28,8 @@ Route::get('/View-All/Upcoming', [AnimeController::class, 'viewAllUpcoming'] );
 
 Route::get('/View-All/Manga', [AnimeController::class, 'viewAllManga'] );
 
-Route::get('/Anime/Search', [AnimeController::class, 'search'] )->name('anime.search');
+Route::get('/Anime/Search', [AnimeController::class, 'search'])->name('anime.search');
+Route::get('/api/search', [AnimeController::class, 'searchApi'])->name('anime.search.api');
 
 Route::get('/detail-anime/{id}', [AnimeController::class, 'detail'] );
 

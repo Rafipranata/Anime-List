@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/anime-custom.css') }}" type="text/css">
 
 
     <title>yi</title>
@@ -124,88 +125,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="trending__product">
-                        <div class="row">
-                            <div class="col-lg-8 col-md-8 col-sm-8">
-                                <div class="section-title">
-                                    <h4>Trending Now</h4>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4">
-                                <div class="btn__all">
-                                    <a href="/View-All/Trending" class="primary-btn">View All <span
-                                            class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            @foreach ($responseAnime as $item)
-                                <div class="col-lg-4 col-md-6 col-sm-6">
-                                    <div class="product__item">
-                                        <div class="product__item__pic set-bg"
-                                            data-setbg="{{ $item['images']['webp']['image_url'] }}">
-                                            <div class="ep">{{ $item['score'] }} / 10 </div>
-                                            <div class="view"><i class="fa fa-eye"></i>
-                                                {{ number_format($item['members']) }} </div>
-                                        </div>
-                                        <div class="product__item__text">
-                                            <ul>
-                                                @foreach ($item['genres'] as $genre)
-                                                    <li>{{ $genre['name'] }}</li>
-                                                @endforeach
-                                            </ul>
-                                            <h5><a href="/detail-anime/{{ $item['mal_id'] }}">{{ $item['title'] }}
-                                                </a></h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-
-
-
-
-                        </div>
-                    </div>
-                    <div class="popular__product">
-                        <div class="row">
-                            <div class="col-lg-8 col-md-8 col-sm-8">
-                                <div class="section-title">
-                                    <h4>Popular Shows</h4>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4">
-                                <div class="btn__all">
-                                    <a href="/View-All/Popular" class="primary-btn">View All <span
-                                            class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            @foreach ($response as $item)
-                                <div class="col-lg-4 col-md-6 col-sm-6">
-                                    <div class="product__item">
-                                        <div class="product__item__pic set-bg"
-                                            data-setbg="{{ $item['images']['webp']['image_url'] }}">
-                                            <div class="ep">{{ $item['score'] }} / 10 </div>
-                                            <div class="view"><i class="fa fa-eye"></i>
-                                                {{ number_format($item['members']) }} </div>
-                                        </div>
-                                        <div class="product__item__text">
-                                            <ul>
-                                                @foreach ($item['genres'] as $genre)
-                                                    <li>{{ $genre['name'] }}</li>
-                                                @endforeach
-                                            </ul>
-                                            <h5><a href="/detail-anime/{{ $item['mal_id'] }}">{{ $item['title'] }}
-                                                </a></h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-
-
-                        </div>
-                    </div>
+                    {{-- 1. UPCOMING ANIME (paling atas) --}}
                     <div class="recent__product">
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8">
@@ -226,9 +146,9 @@
                                     <div class="product__item">
                                         <div class="product__item__pic set-bg"
                                             data-setbg="{{ $item['images']['webp']['image_url'] }}">
-                                            <div class="ep"> ? </div>
+                                            <div class="ep">Coming Soon</div>
                                             <div class="view"><i class="fa fa-eye"></i>
-                                                {{ number_format($item['members']) }} </div>
+                                                {{ number_format($item['members']) }}</div>
                                         </div>
                                         <div class="product__item__text">
                                             <ul>
@@ -236,20 +156,98 @@
                                                     <li>{{ $genre['name'] }}</li>
                                                 @endforeach
                                             </ul>
-                                            <h5><a href="/detail-anime/{{ $item['mal_id'] }}">{{ $item['title'] }}
-                                                </a></h5>
+                                            <h5><a href="/detail-anime/{{ $item['mal_id'] }}">{{ $item['title'] }}</a></h5>
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
-
                         </div>
                     </div>
+
+                    {{-- 2. TRENDING NOW --}}
+                    <div class="trending__product">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-8">
+                                <div class="section-title">
+                                    <h4>Trending Now</h4>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <div class="btn__all">
+                                    <a href="/View-All/Trending" class="primary-btn">View All <span
+                                            class="arrow_right"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            @foreach ($responseAnime as $item)
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="product__item">
+                                        <div class="product__item__pic set-bg"
+                                            data-setbg="{{ $item['images']['webp']['image_url'] }}">
+                                            <div class="ep">{{ $item['score'] ?? 'N/A' }} / 10</div>
+                                            <div class="view"><i class="fa fa-eye"></i>
+                                                {{ number_format($item['members']) }}</div>
+                                        </div>
+                                        <div class="product__item__text">
+                                            <ul>
+                                                @foreach ($item['genres'] as $genre)
+                                                    <li>{{ $genre['name'] }}</li>
+                                                @endforeach
+                                            </ul>
+                                            <h5><a href="/detail-anime/{{ $item['mal_id'] }}">{{ $item['title'] }}</a></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    {{-- 3. ANIME SEKARANG (top anime / popular shows) --}}
+                    <div class="popular__product">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-8">
+                                <div class="section-title">
+                                    <h4>Anime Sekarang</h4>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <div class="btn__all">
+                                    <a href="/View-All/Popular" class="primary-btn">View All <span
+                                            class="arrow_right"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            @foreach ($response as $item)
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="product__item">
+                                        <div class="product__item__pic set-bg"
+                                            data-setbg="{{ $item['images']['webp']['image_url'] }}">
+                                            <div class="ep">{{ $item['score'] ?? 'N/A' }} / 10</div>
+                                            <div class="view"><i class="fa fa-eye"></i>
+                                                {{ number_format($item['members']) }}</div>
+                                        </div>
+                                        <div class="product__item__text">
+                                            <ul>
+                                                @foreach ($item['genres'] as $genre)
+                                                    <li>{{ $genre['name'] }}</li>
+                                                @endforeach
+                                            </ul>
+                                            <h5><a href="/detail-anime/{{ $item['mal_id'] }}">{{ $item['title'] }}</a></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    {{-- 4. LIVE ACTION (Movie/Adaptations dari API) --}}
                     <div class="live__product">
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8">
                                 <div class="section-title">
-                                    <h4>POPULAR MANGA</h4>
+                                    <h4>Live Action</h4>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
@@ -260,15 +258,14 @@
                             </div>
                         </div>
                         <div class="row">
-
                             @foreach ($responseManga as $item)
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="product__item">
                                         <div class="product__item__pic set-bg"
                                             data-setbg="{{ $item['images']['webp']['image_url'] }}">
-                                            <div class="ep">{{ $item['score'] }} </div>
+                                            <div class="ep">{{ $item['score'] ?? 'N/A' }}</div>
                                             <div class="view"><i class="fa fa-eye"></i>
-                                                {{ number_format($item['members']) }} </div>
+                                                {{ number_format($item['members']) }}</div>
                                         </div>
                                         <div class="product__item__text">
                                             <ul>
@@ -276,14 +273,11 @@
                                                     <li>{{ $genre['name'] }}</li>
                                                 @endforeach
                                             </ul>
-                                            <h5><a href="/detail-manga/{{ $item['mal_id'] }}">{{ $item['title'] }}
-                                                </a></h5>
+                                            <h5><a href="/detail-manga/{{ $item['mal_id'] }}">{{ $item['title'] }}</a></h5>
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
-
-
                         </div>
                     </div>
                 </div>
@@ -293,21 +287,50 @@
                             <div class="section-title">
                                 <h5>Recommendation Manga</h5>
                             </div>
-                            <div class="filter__gallery">
+                            <div style="display: flex; flex-direction: column; gap: 10px;">
                                 @foreach ($responseAnimeRekomen as $item)
                                     @foreach ($item['entry'] as $anime)
-                                        <div class="product__sidebar__comment__item">
-                                            <div class="product__sidebar__comment__item__pic">
-                                                <img src="{{ $anime['images']['jpg']['image_url'] }}" alt="{{ $anime['title'] }}">
-                                            </div>
-                                            <div class="product__sidebar__comment__item__text">
-                                                <h5><a href="{{ $anime['url'] }}">{{ $anime['title'] }}</a></h5>
-                                                <span><i class="fa fa-eye"></i> 19.141 Views</span>
-                                            </div>
-                                        </div>
+                                        <a href="/detail-manga/{{ $anime['mal_id'] }}"
+                                           style="
+                                               display: flex;
+                                               align-items: center;
+                                               gap: 10px;
+                                               background: rgba(255,255,255,0.04);
+                                               border-radius: 6px;
+                                               padding: 7px 8px;
+                                               text-decoration: none;
+                                               transition: background 0.2s;
+                                           "
+                                           onmouseover="this.style.background='rgba(255,255,255,0.09)'"
+                                           onmouseout="this.style.background='rgba(255,255,255,0.04)'"
+                                        >
+                                            {{-- Thumbnail kecil --}}
+                                            <img
+                                                src="{{ $anime['images']['jpg']['image_url'] }}"
+                                                alt="{{ $anime['title'] }}"
+                                                style="
+                                                    width: 48px;
+                                                    height: 68px;
+                                                    object-fit: cover;
+                                                    border-radius: 4px;
+                                                    flex-shrink: 0;
+                                                "
+                                            >
+                                            {{-- Judul --}}
+                                            <span style="
+                                                color: #ccc;
+                                                font-size: 12px;
+                                                line-height: 1.4;
+                                                display: -webkit-box;
+                                                -webkit-line-clamp: 3;
+                                                -webkit-box-orient: vertical;
+                                                overflow: hidden;
+                                            ">
+                                                {{ $anime['title'] }}
+                                            </span>
+                                        </a>
                                     @endforeach
                                 @endforeach
-
                             </div>
                         </div>
                         {{-- <div class="product__sidebar__comment">

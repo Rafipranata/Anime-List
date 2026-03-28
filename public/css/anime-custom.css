@@ -1,0 +1,140 @@
+/*
+ * anime-custom.css
+ * Override & responsive fixes untuk card anime
+ */
+
+/* ─── Card Image: lebih compact ─────────────────────────────── */
+.product__item__pic {
+    height: 220px !important;       /* Was 325px — terlalu tinggi */
+    background-size: cover;
+    background-position: center top;
+}
+
+/* ─── Card Text: kurangi padding atas ───────────────────────── */
+.product__item__text {
+    padding-top: 10px;
+}
+
+.product__item__text h5 {
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: 0;
+    /* Truncate judul panjang di 2 baris */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.product__item__text h5 a {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.product__item__text ul {
+    margin-bottom: 6px;
+}
+
+.product__item__text ul li {
+    font-size: 9px;
+    padding: 1px 7px;
+    margin-bottom: 3px;
+}
+
+/* ─── Card margin bawah ─────────────────────────────────────── */
+.product__item {
+    margin-bottom: 20px;
+}
+
+/* ─── Badge ep / score / view lebih kecil ───────────────────── */
+.product__item__pic .ep {
+    font-size: 11px;
+    padding: 2px 8px;
+}
+
+.product__item__pic .view {
+    font-size: 11px;
+    padding: 2px 8px;
+}
+
+/* ─── Section spacing lebih rapat ───────────────────────────── */
+.trending__product,
+.popular__product,
+.recent__product,
+.live__product {
+    margin-bottom: 35px;
+}
+
+/* ─── MOBILE: <= 576px ───────────────────────────────────────── */
+@media (max-width: 576px) {
+    .product__item__pic {
+        height: 180px !important;
+    }
+
+    .product__item__text h5 a {
+        font-size: 12px;
+    }
+
+    /* Di mobile: 2 kolom berdampingan */
+    .product .col-sm-6 {
+        width: 50%;
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+    .product__item {
+        margin-bottom: 12px;
+    }
+
+    /* Section title lebih kecil */
+    .section-title h4 {
+        font-size: 16px;
+    }
+
+    /* Tombol View All menyesuaikan */
+    .btn__all {
+        margin-bottom: 15px;
+    }
+
+    .primary-btn {
+        font-size: 11px;
+        padding: 8px 12px;
+        letter-spacing: 0;
+    }
+}
+
+/* ─── TABLET: 577px – 991px ──────────────────────────────────── */
+@media (min-width: 577px) and (max-width: 991px) {
+    .product__item__pic {
+        height: 200px !important;
+    }
+}
+
+/* ─── DESKTOP: >= 992px ──────────────────────────────────────── */
+@media (min-width: 992px) {
+    .product__item__pic {
+        height: 240px !important;
+    }
+}
+
+/* ─── ViewAll & Search page: sama ukurannya ─────────────────── */
+.product-page .product__item__pic {
+    height: 220px !important;
+}
+
+@media (max-width: 576px) {
+    .product-page .product__item__pic {
+        height: 180px !important;
+    }
+}
+
+/* ─── Sidebar Anime Details ──────────────────────────────────── */
+.anime__details__pic {
+    height: 320px !important;   /* Was 440px */
+}
+
+@media (max-width: 576px) {
+    .anime__details__pic {
+        height: 220px !important;
+    }
+}
